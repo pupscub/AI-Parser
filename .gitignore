@@ -1,0 +1,16 @@
+# .env file
+
+.venv
+
+input/*
+output/*
+
+!input/.gitkeep
+!output/.gitkeep
+
+__pycache__/
+
+parser/__pycache__/
+parser/core/__pycache__/
+parser/core/parser_types/__pycache__/
+.env
