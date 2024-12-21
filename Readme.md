@@ -8,8 +8,7 @@
 ### Steps to Set Up the Project
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
-   cd <repository_folder>
+   git clone https://github.com/pupscub/AI-Parser.git
    ```
 
 2. Create a virtual environment and install dependencies:
