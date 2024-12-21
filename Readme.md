@@ -21,9 +21,7 @@
    make dev
    ```
 
----
-
-## Running the Streamlit App
+### Running the Streamlit App
 
 To run the demo application:
 
@@ -46,22 +44,9 @@ To run the demo application:
 
 4. Open the URL provided by Streamlit in your browser to access the app.
 
----
-
-## Cleaning Up
+### Cleaning Up
 
 To remove the virtual environment:
 ```bash
 make clean
 ```
-
----
-
-## Building the Project
-
-If your project requires additional build steps, you can customize the `build` target in the Makefile. For now, it simply echoes a placeholder message:
-```bash
-make build
-```
-
----
