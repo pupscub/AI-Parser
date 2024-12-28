@@ -7,7 +7,7 @@ from typing import Dict, List
 import pypdfium2 as pdfium
 import requests
 from parser.core.prompt_templates import (
-    INSTRUCTIONS_ADD_PG_BREAK,
+    # INSTRUCTIONS_ADD_PG_BREAK,
     OPENAI_USER_PROMPT,
     PARSER_PROMPT,
 )
@@ -47,18 +47,20 @@ def parse_with_gemini(path: str, raw: bool, **kwargs) -> List[Dict] | str:
         base64_file = base64.b64encode(file_content).decode("utf-8")
 
     # Ideally, we do this ourselves. But, for now this might be a good enough.
-    custom_instruction = f"""- Total number of pages: {kwargs["pages_per_split"]}. {INSTRUCTIONS_ADD_PG_BREAK}"""
+    # custom_instruction = f"""- Total number of pages: {kwargs["pages_per_split"]}. {INSTRUCTIONS_ADD_PG_BREAK}"""
     if kwargs["pages_per_split"] == 1:
         custom_instruction = ""
-
+    print(PARSER_PROMPT)
     payload = {
         "contents": [
             {
                 "parts": [
                     {
-                        "text": PARSER_PROMPT.format(
-                            custom_instructions=custom_instruction
-                        )
+                        # "text": PARSER_PROMPT.format(
+                        #     custom_instructions=custom_instruction
+                        # )
+                        "text": PARSER_PROMPT
+                        
                     },
                     {"inline_data": {"mime_type": mime_type, "data": base64_file}},
                 ]
