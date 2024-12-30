@@ -50,11 +50,9 @@ def parse_chunk(
     )
     if parser_type == ParserType.STATIC_PARSE:
         logger.debug("Using static parser")
-        print("This Static Function is being called Right now ##########")
         return parse_static_doc(path, raw, **kwargs)
     else:
         logger.debug("Using LLM parser")
-        print("This LLM Function is being called Right now ##########")
         return parse_llm_doc(path, raw, **kwargs)
 
 
@@ -110,7 +108,6 @@ def parse(
     as_pdf = kwargs.get("as_pdf", False)
     depth = kwargs.get("depth", 1)
     parser_type = ParserType[parser_type]
-    print("This PARSE Function is being called Right now ##########")
     with tempfile.TemporaryDirectory() as temp_dir:
         if path.startswith(("http://", "https://")):
             download_dir = os.path.join(temp_dir, "downloads/")

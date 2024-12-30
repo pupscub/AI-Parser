@@ -18,6 +18,10 @@ from PyQt5.QtGui import QPageLayout, QPageSize
 from PyQt5.QtPrintSupport import QPrinter
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QApplication
+from parser.core.pricing import PRICING
+import tiktoken
+
+print(PRICING)
 
 # Source: https://stackoverflow.com/a/12982689
 HTML_TAG_PATTERN = re.compile("<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});")
@@ -438,3 +442,19 @@ def get_uri_rect(path):
         list(map(float, rect_split.split("]")[0].split())) for rect_split in rect_splits
     ]
     return {uri: rect for uri, rect in zip(uris, rects)}
+
+
+# encoder = tiktoken.encoding_for_model(selected_model)
+# input_token_count = len(encoder.encode(USER_MESSAGE + data))
+
+
+def calulcate_price(token_counts, model):
+    input_token_count = token_counts.get("input_tokens", 0)
+    output_token_count = token_counts.get("output_tokens", 0)
+    
+    # Calculate the costs
+    input_cost = input_token_count * PRICING[model]["input"]
+    output_cost = output_token_count * PRICING[model]["output"]
+    total_cost = input_cost + output_cost
+    
+    return input_token_count, output_token_count, total_cost

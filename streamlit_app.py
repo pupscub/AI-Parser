@@ -7,15 +7,17 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
+# Initialize Streamlit app
+st.set_page_config(page_title="AI-Scraper")
+st.title("AI-Scraper")
+
 # Function to parse PDF from path
 def parse_pdf_path(pdf_path: str, model_name: str,parser_type: str,framework: str = None) -> str:
     # print("IS THIS LINE PRINTED??")
     file_name = pdf_path.split('/')[-1]
     file_name = os.path.splitext(file_name)[0]
     # print("IS THIS LINE PRINTED?? - 2")
-    print(pdf_path)
-    print(model_name)
-    print(parser_type)
+    
     file = parse(path=pdf_path, 
                  parser_type=parser_type, 
                  raw=True, 
@@ -59,7 +61,7 @@ def main():
         framework = st.selectbox("Pick any of the following Python Libraries",["pymupdf","pdfminer","pdfplumber"])  # Replace with actual parser types
 
     # Select model name (assuming you have multiple models)
-    model_name = st.selectbox("Select Model", ["gemini-1.5-flash", "gpt-4o-mini"])  # Replace with actual model names
+    model_name = st.selectbox("Select Model", ["gemini-1.5-flash", "gpt-4o-mini","gpt-4o-2024-08-06"])  # Replace with actual model names
 
     if st.button('Process'):
         if url:
