@@ -6,7 +6,11 @@ from enum import Enum
 from glob import glob
 from time import time
 from typing import Union, Dict, List
-
+from parser.core.prompt_templates import (
+    # INSTRUCTIONS_ADD_PG_BREAK,
+    OPENAI_USER_PROMPT,
+    PARSER_PROMPT,
+)
 from loguru import logger
 
 from parser.core.parse_type.llm_parser import parse_llm_doc

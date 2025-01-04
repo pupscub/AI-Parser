@@ -3,7 +3,7 @@ import os
 from parser.api import parse
 from parser.api import ParserType
 from dotenv import load_dotenv
-
+from parser.core.utils import get_token_count ,calculate_price
 # Load environment variables
 load_dotenv()
 
@@ -13,11 +13,9 @@ st.title("AI-Scraper")
 
 # Function to parse PDF from path
 def parse_pdf_path(pdf_path: str, model_name: str,parser_type: str,framework: str = None) -> str:
-    # print("IS THIS LINE PRINTED??")
     file_name = pdf_path.split('/')[-1]
     file_name = os.path.splitext(file_name)[0]
-    # print("IS THIS LINE PRINTED?? - 2")
-    
+
     file = parse(path=pdf_path, 
                  parser_type=parser_type, 
                  raw=True, 
@@ -95,16 +93,11 @@ def main():
                     temp_file_path = os.path.join("input", uploaded_file.name)
                     with open(temp_file_path, "wb") as f:
                         f.write(uploaded_file.read())
-                    # print(temp_file_path)
-                    # print(model_name)
-                    # print("THIS LINE IS FIRST LINE PRINTED")
                     parsed_content, file_name = parse_pdf_path(temp_file_path, 
                                                                model_name,
                                                                parser_type,
                                                                framework)
-                    # print("THIS LINE IS PRINTED")
                     csv_path = convert_md_to_csv(parsed_content, file_name)
-                    # print("THIS LINE IS ALSO PRINTED")
                     st.success('Processing complete!')
                     
                     # Provide download link for the processed CSV file
@@ -115,10 +108,21 @@ def main():
                             file_name=file_name + ".csv",
                             mime="text/csv"
                         )
+                    token_counts = get_token_count(input_file_path=temp_file_path, 
+                                                   output=parsed_content,
+                                                   model_name=model_name)
+                    total_input_tokens = token_counts["input_tokens"]
+                    total_output_tokens = token_counts["output_tokens"]
+                    total_cost = calculate_price(token_counts = token_counts,
+                                                 model_name=model_name)
+                    # Show the pricing of the selected model in random colors
+                
                 except Exception as e:
                     st.error(f"Error processing uploaded file: {e}")
-
+                
+                st.markdown("#### Token Usage and Pricing")
+                st.markdown(f"*Input Tokens:* {total_input_tokens}")
+                st.markdown(f"*Output Tokens:* {total_output_tokens}")
+                st.markdown(f"**Total Cost:** :green-background[**${total_cost:.4f}**]")
 if __name__ == '__main__':
-    # file, file_name = parse_pdf_path("input/2005-2020.pdf","gemini-Google")
-    # convert_md_to_csv(file,file_name)
     main()

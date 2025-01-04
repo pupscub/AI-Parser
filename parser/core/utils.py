@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 import pikepdf
 import pypdfium2
 import requests
+from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 from markdown import markdown
 from markdownify import markdownify as md
@@ -19,13 +20,18 @@ from PyQt5.QtPrintSupport import QPrinter
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QApplication
 from parser.core.pricing import PRICING
+import base64
 import tiktoken
-
-print(PRICING)
-
+import google.generativeai as genai
+from vertexai.generative_models import GenerativeModel
+from parser.core.prompt_templates import (
+    # INSTRUCTIONS_ADD_PG_BREAK,
+    OPENAI_USER_PROMPT,
+    PARSER_PROMPT,
+)
 # Source: https://stackoverflow.com/a/12982689
 HTML_TAG_PATTERN = re.compile("<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});")
-
+load_dotenv()
 
 def split_pdf(input_path: str, output_dir: str, pages_per_split: int):
     paths = []
@@ -444,17 +450,53 @@ def get_uri_rect(path):
     return {uri: rect for uri, rect in zip(uris, rects)}
 
 
-# encoder = tiktoken.encoding_for_model(selected_model)
-# input_token_count = len(encoder.encode(USER_MESSAGE + data))
+def get_token_count(input_file_path,output,model_name) -> str:
+    """
+    Returns the pricing information for the different models.
 
+    Args:
+        user_message (str): The user message.
 
-def calulcate_price(token_counts, model):
+    Returns:
+        str: The pricing information.
+    """
+    with open(input_file_path, "rb") as file:
+            file_content = file.read()
+            # print(file_content)
+    input_base64_file = base64.b64encode(file_content).decode("utf-8")
+    if model_name.startswith("gpt"):
+        print("THIS PART IS RUNNING")       
+        encoder = tiktoken.encoding_for_model(model_name)
+        input_token_count = len(encoder.encode(PARSER_PROMPT + OPENAI_USER_PROMPT + input_base64_file))
+        output_token_count = len(encoder.encode(output))
+
+    elif model_name.startswith("gemini"):
+        print("THIS PART IS ALSO RUNNING????")
+        genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+        model = genai.GenerativeModel("models/"+model_name)
+        prompt = PARSER_PROMPT + input_base64_file
+        # Count input tokens using Gemini's method
+        completion = model.generate_content(prompt)
+        # Extract token counts from usage_metadata
+        usage_metadata = completion.usage_metadata
+        input_token_count = usage_metadata.prompt_token_count,
+        output_token_count = usage_metadata.candidates_token_count
+    
+    token_counts = {
+            "input_tokens": input_token_count[0],
+            "output_tokens": output_token_count
+        }
+    return token_counts
+
+ 
+def calculate_price(token_counts, model_name):
     input_token_count = token_counts.get("input_tokens", 0)
     output_token_count = token_counts.get("output_tokens", 0)
-    
     # Calculate the costs
-    input_cost = input_token_count * PRICING[model]["input"]
-    output_cost = output_token_count * PRICING[model]["output"]
+    print(input_token_count)
+    print(output_token_count)
+    input_cost = input_token_count * PRICING[model_name]["input"]
+    output_cost = output_token_count * PRICING[model_name]["output"]
     total_cost = input_cost + output_cost
     
-    return input_token_count, output_token_count, total_cost
+    return total_cost

@@ -107,6 +107,7 @@ fonttools==4.54.1
 fsspec==2024.10.0
 gast==0.6.0
 gmpy2 @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/croot-muov7gw1/gmpy2_1645462616268/work
+google==3.0.0
 google-ai-generativelanguage==0.6.10
 google-api-core==2.23.0
 google-api-python-client==2.154.0
@@ -253,6 +254,7 @@ typing_extensions==4.12.2
 tzdata==2024.2
 uritemplate==4.1.1
 urllib3==2.2.3
+verterxai==1.71.1 
 virtualenv==20.28.0
 wcwidth==0.2.13
 Werkzeug==3.1.3

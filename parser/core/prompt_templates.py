@@ -175,6 +175,7 @@ Enclose the response within XML tags as follows:
 - One row per unique combination of province, year, and crop type
 - Consistent decimal notation
 - No text formatting or special characters
+- Make sure to complete Parsing the whole document and all the values
 """
 
 OPENAI_USER_PROMPT = """\
