@@ -14,3 +14,5 @@ parser/__pycache__/
 parser/core/__pycache__/
 parser/core/parser_types/__pycache__/
 .env
+
+TODO.txt
