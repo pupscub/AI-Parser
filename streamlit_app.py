@@ -115,11 +115,9 @@ def main():
                     total_output_tokens = token_counts["output_tokens"]
                     total_cost = calculate_price(token_counts = token_counts,
                                                  model_name=model_name)
-                    # Show the pricing of the selected model in random colors
-                
+                    # Show the pricing of the selected model in random colors 
                 except Exception as e:
                     st.error(f"Error processing uploaded file: {e}")
-                
                 st.markdown("#### Token Usage and Pricing")
                 st.markdown(f"*Input Tokens:* {total_input_tokens}")
                 st.markdown(f"*Output Tokens:* {total_output_tokens}")

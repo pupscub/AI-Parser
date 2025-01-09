@@ -154,6 +154,8 @@ Province/District,Year,Crop_Type,Area_Harvested,Production,Yield
 - Validate against known agricultural patterns
 - Flag statistical outliers
 - Ensure no duplicate entries
+- Make sure all the data is scraped and considered nothing is left
+- Every row entry should be in single row and should not be merged with other rows
 
 5. Translation Requirements:
 - Convert all Mongolian province names to standardized English names

@@ -465,13 +465,11 @@ def get_token_count(input_file_path,output,model_name) -> str:
             # print(file_content)
     input_base64_file = base64.b64encode(file_content).decode("utf-8")
     if model_name.startswith("gpt"):
-        print("THIS PART IS RUNNING")       
         encoder = tiktoken.encoding_for_model(model_name)
         input_token_count = len(encoder.encode(PARSER_PROMPT + OPENAI_USER_PROMPT + input_base64_file))
         output_token_count = len(encoder.encode(output))
 
     elif model_name.startswith("gemini"):
-        print("THIS PART IS ALSO RUNNING????")
         genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
         model = genai.GenerativeModel("models/"+model_name)
         prompt = PARSER_PROMPT + input_base64_file
@@ -481,9 +479,10 @@ def get_token_count(input_file_path,output,model_name) -> str:
         usage_metadata = completion.usage_metadata
         input_token_count = usage_metadata.prompt_token_count,
         output_token_count = usage_metadata.candidates_token_count
-    
+        input_token_count = input_token_count[0]
+
     token_counts = {
-            "input_tokens": input_token_count[0],
+            "input_tokens": input_token_count,
             "output_tokens": output_token_count
         }
     return token_counts
@@ -493,8 +492,6 @@ def calculate_price(token_counts, model_name):
     input_token_count = token_counts.get("input_tokens", 0)
     output_token_count = token_counts.get("output_tokens", 0)
     # Calculate the costs
-    print(input_token_count)
-    print(output_token_count)
     input_cost = input_token_count * PRICING[model_name]["input"]
     output_cost = output_token_count * PRICING[model_name]["output"]
     total_cost = input_cost + output_cost
