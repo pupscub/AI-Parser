@@ -24,6 +24,8 @@ def parse_llm_doc(path: str, raw: bool, **kwargs) -> List[Dict] | str:
         return parse_with_gemini(path, raw, **kwargs)
     elif model.startswith("gpt"):
         return parse_with_gpt(path, raw, **kwargs)
+    elif model.startswith("deep"):
+        return parse_with_deepseek(path, raw, **kwargs)
     else:
         raise ValueError(f"Unsupported model: {model}")
 
@@ -34,7 +36,7 @@ def parse_with_gemini(path: str, raw: bool, **kwargs) -> List[Dict] | str:
         raise ValueError("GOOGLE_API_KEY environment variable is not set")
 
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{kwargs['model']}:generateContent?key={api_key}"
-
+    print(url)
     # Check if the file is an image and convert to PDF if necessary
     mime_type, _ = mimetypes.guess_type(path)
     if mime_type and mime_type.startswith("image"):
@@ -57,9 +59,6 @@ def parse_with_gemini(path: str, raw: bool, **kwargs) -> List[Dict] | str:
             {
                 "parts": [
                     {
-                        # "text": PARSER_PROMPT.format(
-                        #     custom_instructions=custom_instruction
-                        # )
                         "text": PARSER_PROMPT
                         
                     },
@@ -68,7 +67,7 @@ def parse_with_gemini(path: str, raw: bool, **kwargs) -> List[Dict] | str:
             }
         ],
         "generationConfig": {
-            "temperature": kwargs.get("temperature", 0.7),
+            "temperature": kwargs.get("temperature", 0.1),
         },
     }
 
@@ -167,9 +166,95 @@ def parse_with_gpt(path: str, raw: bool, **kwargs) -> List[Dict] | str:
         # Get completion from GPT-4 Vision
         response = client.chat.completions.create(
             model=kwargs["model"],
-            temperature=kwargs.get("temperature", 0.7),
+            temperature=kwargs.get("temperature", 0.1),
             messages=messages,
         )
+
+        # Extract the response text
+        page_text = response.choices[0].message.content
+        if kwargs.get("verbose", None):
+            logger.debug(f"Page {page_num + 1} response: {page_text}")
+        result = ""
+        if "<output>" in page_text:
+            result = page_text.split("<output>")[1].strip()
+        if "</output>" in result:
+            result = result.split("</output>")[0].strip()
+        all_results.append((page_num, result))
+
+    # Sort results by page number and combine
+    all_results.sort(key=lambda x: x[0])
+    all_texts = [text for _, text in all_results]
+    combined_text = "<page-break>".join(all_texts)
+
+    if raw:
+        return combined_text
+
+    return [
+        {
+            "metadata": {
+                "title": kwargs["title"],
+                "page": kwargs.get("start", 0) + page_no,
+            },
+            "content": page,
+        }
+        for page_no, page in enumerate(all_texts, start=1)
+        if page.strip()
+    ]
+
+
+def parse_with_deepseek(path: str, raw: bool, **kwargs) -> list[Dict] | str:
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
+    print(api_key)
+    print("THIS LINE IS PRINTED 1",kwargs["model"])
+    client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
+
+    # Handle different input types
+    mime_type, _ = mimetypes.guess_type(path)
+    if mime_type and mime_type.startswith("image"):
+        # Single image processing
+        with open(path, "rb") as img_file:
+            image_base64 = base64.b64encode(img_file.read()).decode("utf-8")
+            images = [(0, image_base64)]
+    else:
+        # PDF processing
+        pdf_document = pdfium.PdfDocument(path)
+        images = [
+            (page_num, convert_pdf_page_to_base64(pdf_document, page_num))
+            for page_num in range(len(pdf_document))
+        ]
+
+    print("THIS LINE IS PRINTED 2", kwargs["model"])
+
+    # Process each page/image
+    all_results = []
+    for page_num, image_base64 in images:
+        messages = [
+            {
+                "role": "system",
+                "content": PARSER_PROMPT,
+            },
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": f"{OPENAI_USER_PROMPT} (Page {page_num + 1})",
+                    },
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/png;base64,{image_base64}"},
+                    },
+                ],
+            },
+        ]
+        # Get completion from GPT-4 Vision
+        response = client.chat.completions.create(
+            model=kwargs["model"],
+            temperature=kwargs.get("temperature", 0.1),
+            messages=messages,
+        )
+        print("THIS LINE IS PRINTED 3",kwargs["model"])
+        # print(response)
 
         # Extract the response text
         page_text = response.choices[0].message.content

@@ -277,3 +277,11 @@ PRICING = {
     },
     # Add other models and their prices here if needed
 }
+
+
+
+Add a function that asks the user pages numbers the table are present and 
+split pdf to parse only those pages
+
+for cases where there are 100 pages but the table only exisits at page 10 20-40 30 etc. the parser should be smart enough to understand that and work 
+acordingly

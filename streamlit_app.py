@@ -59,7 +59,7 @@ def main():
         framework = st.selectbox("Pick any of the following Python Libraries",["pymupdf","pdfminer","pdfplumber"])  # Replace with actual parser types
 
     # Select model name (assuming you have multiple models)
-    model_name = st.selectbox("Select Model", ["gemini-1.5-flash", "gpt-4o-mini","gpt-4o-2024-08-06"])  # Replace with actual model names
+    model_name = st.selectbox("Select Model", ["gemini-1.5-flash", "gpt-4o-mini","gpt-4o-2024-08-06","deepseek-chat", "deepseek-reasoner"])  # Replace with actual model names
 
     if st.button('Process'):
         if url:

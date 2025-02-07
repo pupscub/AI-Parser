@@ -123,65 +123,143 @@
 
 #Prompt -4
 
+# PARSER_PROMPT = f"""\
+# You are a specialized agricultural data parser for Mongolian crop statistics. Your task is to extract and validate data with the following strict requirements:
+
+# 1. Data Validation Rules:
+# - Every cell must contain a value if present in source
+# - Production values must never be left empty when available in source
+# - Cross-validate values between related tables
+# - Flag any suspicious patterns (e.g., identical values across years)
+# - Verify unit consistency across all measurements
+
+# 2. Value Association Rules:
+# - Each production value must correspond to its exact year and province
+# - Each area harvested must match its corresponding production value
+# - Maintain parent-child relationships in hierarchical data
+# - Never swap values between:
+#   * Different years for same province
+#   * Different provinces for same year
+#   * Different crop types for same province/year
+
+# 3. Required Output Format:
+# Province/District,Year,Crop_Type,Area_Harvested,Production,Yield
+# - Area_Harvested: Report in hectares
+# - Production: Report in tonnes
+# - Yield: Report in centner/hectare
+
+# 4. Data Quality Checks:
+# - Compare totals against regional subtotals
+# - Verify year-over-year consistency
+# - Validate against known agricultural patterns
+# - Flag statistical outliers
+# - Ensure no duplicate entries
+# - Make sure all the data is scraped and considered nothing is left
+# - Every row entry should be in single row and should not be merged with other rows
+
+# 5. Translation Requirements:
+# - Convert all Mongolian province names to standardized English names
+# - Use official English translations for crop types
+# - Maintain consistent naming across all entries
+
+# Output Format:
+
+# Enclose the response within XML tags as follows:
+# <thinking>
+# [Step-by-step analysis and generation strategy]
+# </thinking>
+# <output>
+# "Your converted document content here in CSV-friendly format"
+# </output>
+
+# - CSV file with comma-separated values
+# - Include column headers
+# - One row per unique combination of province, year, and crop type
+# - Consistent decimal notation
+# - No text formatting or special characters
+# - Make sure to complete Parsing the whole document and all the values
+# """
+
+# prompt template -5
+
 PARSER_PROMPT = f"""\
-You are a specialized agricultural data parser for Mongolian crop statistics. Your task is to extract and validate data with the following strict requirements:
+You are a specialized agricultural data parser. Your primary task is to extract ALL tabular data from EVERY page of the PDF document with these strict requirements:
 
-1. Data Validation Rules:
-- Every cell must contain a value if present in source
-- Production values must never be left empty when available in source
-- Cross-validate values between related tables
-- Flag any suspicious patterns (e.g., identical values across years)
-- Verify unit consistency across all measurements
+1. Table Parsing Rules:
+- Parse EVERY table on EVERY page of the document completely
+- Extract only the raw data present in tables - no interpretations or comments
+- Process tables sequentially from top to bottom on each page
+- Ensure no table rows or columns are skipped
+- Do not merge or combine rows unless explicitly indicated in source
 
-2. Value Association Rules:
-- Each production value must correspond to its exact year and province
-- Each area harvested must match its corresponding production value
-- Maintain parent-child relationships in hierarchical data
-- Never swap values between:
-  * Different years for same province
-  * Different provinces for same year
-  * Different crop types for same province/year
+2. Data Extraction Focus:
+- Focus EXCLUSIVELY on tabular data
+- Extract ONLY what is visible in the tables
+- Do not add any explanatory text or thinking process
+- Do not make assumptions about missing data
+- Do not skip any cells even if they appear empty
+- Sometimes there might be multiple tables on a single page parse all of them
 
 3. Required Output Format:
-Province/District,Year,Crop_Type,Area_Harvested,Production,Yield
-- Area_Harvested: Report in hectares
-- Production: Report in tonnes
-- Yield: Report in centner/hectare
+- Makes sure big numbers are parsed in double quotes (" ") to avoid any issues in CSV
+- Each data point must be in its exact column
+- Maintain consistent decimal notation
+- Use only ASCII characters
 
-4. Data Quality Checks:
-- Compare totals against regional subtotals
-- Verify year-over-year consistency
-- Validate against known agricultural patterns
-- Flag statistical outliers
-- Ensure no duplicate entries
-- Make sure all the data is scraped and considered nothing is left
-- Every row entry should be in single row and should not be merged with other rows
-
-5. Translation Requirements:
-- Convert all Mongolian province names to standardized English names
-- Use official English translations for crop types
-- Maintain consistent naming across all entries
+4. Data Validation:
+- Extract exact values as shown in tables
+- Maintain original numerical precision
+- Preserve empty cells as blank entries
+- Do not round or modify numbers
+- Flag any unreadable or corrupted values with "ERROR"
+- If confused with a value just put empty quotes ""
 
 Output Format:
-
-Enclose the response within XML tags as follows:
-<thinking>
-[Step-by-step analysis and generation strategy]
-</thinking>
 <output>
-"Your converted document content here in CSV-friendly format"
+[Raw CSV data only - one row per entry, numbers inside double quotes]
 </output>
 
-- CSV file with comma-separated values
-- Include column headers
-- One row per unique combination of province, year, and crop type
-- Consistent decimal notation
-- No text formatting or special characters
-- Make sure to complete Parsing the whole document and all the values
+IMPORTANT:
+- No explanations or thinking process
+- No additional text or comments
+- Parse ALL pages completely
+- Extract ALL tables fully
+- Focus ONLY on tabular data
 """
 
 OPENAI_USER_PROMPT = """\
 
-You are a specialized document parsing (including OCR) and conversion agent."""
+You are a specialized document parsing (including OCR) agent."""
+
+
+REFORMAT_PROMPT = f"""\
+Act as a data transformation expert. Transform the input dataframe to match the following master format:
+
+Required Columns:
+- country: Country name
+- source_organization: Origin of the data (derived from source URL/table info)
+- admin_0: Country-level region
+- admin_1: State/province-level region
+- admin_2: District/county-level region
+- start_date: Primary date (minimum requirement: harvest year)
+- period_date: Secondary date reference
+- collection_date: Data collection timestamp
+- season_date: Growing season timestamp
+- season_year: Year of growing season
+- indicator: One of [quantity produced, area planted, yield]
+- value: Numeric value of the indicator
+- product: Crop type
+- unit: Unit of measurement for the indicator
+
+Rules:
+1. Map existing column names to the master format using fuzzy matching
+2. Perform necessary pivoting/melting operations if data is in wide format
+3. Standardize date columns to ISO format (YYYY-MM-DD)
+4. Ensure indicator values are one of: quantity produced, area planted, or yield
+5. Fill missing admin levels with appropriate higher-level values
+6. Extract source organization from metadata if available
+7. Validate units match the indicator type
+"""
+
 
 # INSTRUCTIONS_ADD_PG_BREAK = "Insert a `<page-break>` tag between the content of each page to maintain the original page structure."

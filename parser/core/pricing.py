@@ -19,5 +19,13 @@ PRICING = {
         "input": 0 ,  # Free
         "output": 0 , # Free
     },
+    "deepseek-chat":{
+        "input": 0.0518/1_000_000, # assuming 70% cache hit
+        "output": 0.28/1_000_000,
+    },
+    "deepseek-reasoner":{
+        "input":0.2632/1_000_000, 
+        "output":2.19/1_000_000,
+    }
     # Add other models and their prices here if needed
 }

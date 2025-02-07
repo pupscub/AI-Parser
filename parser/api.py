@@ -20,6 +20,8 @@ from parser.core.utils import (
     split_pdf,
 )
 
+# transform files
+# from parser.core.transform_type import transform_data
 
 class ParserType(Enum):
     LLM_PARSE = "LLM_PARSE"
@@ -173,3 +175,16 @@ def parse(
         all_docs = new_docs
 
     return "\n".join(all_docs) if raw else all_docs
+
+
+def refeactor(document):
+    """
+    Following fucntion takes in CSV file and refactor in master data format based on requirements
+    Args: LLM parsed CSV
+
+    output: Transformed data 
+    """
+    pass
+
+def column_attest():
+    pass
