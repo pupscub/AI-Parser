@@ -11,6 +11,7 @@ load_dotenv()
 st.set_page_config(page_title="AI-Scraper")
 st.title("AI-Scraper")
 
+
 # Function to parse PDF from path
 def parse_pdf_path(pdf_path: str, model_name: str,parser_type: str,framework: str = None) -> str:
     file_name = pdf_path.split('/')[-1]
