@@ -177,14 +177,14 @@ def parse(
     return "\n".join(all_docs) if raw else all_docs
 
 
-def refeactor(document):
-    """
-    Following fucntion takes in CSV file and refactor in master data format based on requirements
-    Args: LLM parsed CSV
+# def refeactor(document):
+#     """
+#     Following fucntion takes in CSV file and refactor in master data format based on requirements
+#     Args: LLM parsed CSV
 
-    output: Transformed data 
-    """
-    pass
+#     output: Transformed data 
+#     """
+#     pass
 
-def column_attest():
-    pass
+# def column_attest():
+#     pass
