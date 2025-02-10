@@ -1,5 +1,5 @@
 # Editable install with no version control (parser==0.1.4)
--e /Users/adityasingh/Documents/Work/Havard/Parser/parser
+# -e /Users/adityasingh/Documents/Work/Havard/Parser/parser
 
 
 annotated-types==0.7.0 ; python_version >= "3.10" and python_version < "4.0"
