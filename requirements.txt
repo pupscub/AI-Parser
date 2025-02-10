@@ -1,279 +1,470 @@
-# Editable install with no version control (parser==0.1.4)
+# # Editable install with no version control (parser==0.1.4)
+# # -e /Users/adityasingh/Documents/Work/Havard/Parser/parser
+
+
+# annotated-types==0.7.0 ; python_version >= "3.10" and python_version < "4.0"
+# anyio==4.6.2.post1 ; python_version >= "3.10" and python_version < "4.0"
+# beautifulsoup4==4.12.3 ; python_version >= "3.10" and python_version < "4.0"
+# bs4==0.0.2 ; python_version >= "3.10" and python_version < "4.0"
+# cachetools==5.5.0 ; python_version >= "3.10" and python_version < "4.0"
+# certifi==2024.8.30 ; python_version >= "3.10" and python_version < "4.0"
+# cffi==1.17.1 ; python_version >= "3.10" and python_version < "4.0" and platform_python_implementation != "PyPy"
+# charset-normalizer==3.4.0 ; python_version >= "3.10" and python_version < "4.0"
+# colorama==0.4.6 ; python_version >= "3.10" and python_version < "4.0" and (sys_platform == "win32" or platform_system == "Windows")
+# cryptography==43.0.3 ; python_version >= "3.10" and python_version < "4.0"
+# deprecated==1.2.15 ; python_version >= "3.10" and python_version < "4.0"
+# distro==1.9.0 ; python_version >= "3.10" and python_version < "4.0"
+# exceptiongroup==1.2.2 ; python_version >= "3.10" and python_version < "3.11"
+# google-ai-generativelanguage==0.6.10 ; python_version >= "3.10" and python_version < "4.0"
+# google-api-core==2.23.0 ; python_version >= "3.10" and python_version < "4.0"
+# google-api-core[grpc]==2.23.0 ; python_version >= "3.10" and python_version < "4.0"
+# google-api-python-client==2.154.0 ; python_version >= "3.10" and python_version < "4.0"
+# google-auth-httplib2==0.2.0 ; python_version >= "3.10" and python_version < "4.0"
+# google-auth==2.36.0 ; python_version >= "3.10" and python_version < "4.0"
+# google-generativeai==0.8.3 ; python_version >= "3.10" and python_version < "4.0"
+# googleapis-common-protos==1.66.0 ; python_version >= "3.10" and python_version < "4.0"
+# grpcio-status==1.68.0 ; python_version >= "3.10" and python_version < "4.0"
+# grpcio==1.68.0 ; python_version >= "3.10" and python_version < "4.0"
+# h11==0.14.0 ; python_version >= "3.10" and python_version < "4.0"
+# httpcore==1.0.7 ; python_version >= "3.10" and python_version < "4.0"
+# httplib2==0.22.0 ; python_version >= "3.10" and python_version < "4.0"
+# httpx==0.27.2 ; python_version >= "3.10" and python_version < "4.0"
+# idna==3.10 ; python_version >= "3.10" and python_version < "4.0"
+# jiter==0.7.1 ; python_version >= "3.10" and python_version < "4.0"
+# loguru==0.7.2 ; python_version >= "3.10" and python_version < "4.0"
+# lxml==5.3.0 ; python_version >= "3.10" and python_version < "4.0"
+# markdown==3.7 ; python_version >= "3.10" and python_version < "4.0"
+# markdownify==0.13.1 ; python_version >= "3.10" and python_version < "4.0"
+# numpy==2.1.3 ; python_version >= "3.10" and python_version < "4.0"
+# openai==1.55.0 ; python_version >= "3.10" and python_version < "4.0"
+# opencv-python==4.10.0.84 ; python_version >= "3.10" and python_version < "4.0"
+# packaging==24.2 ; python_version >= "3.10" and python_version < "4.0"
+# pandas==2.2.3 ; python_version >= "3.10" and python_version < "4.0"
+# pdfminer-six==20231228 ; python_version >= "3.10" and python_version < "4.0"
+# pdfplumber==0.11.4 ; python_version >= "3.10" and python_version < "4.0"
+# pikepdf==9.4.2 ; python_version >= "3.10" and python_version < "4.0"
+# pillow==11.0.0 ; python_version >= "3.10" and python_version < "4.0"
+# proto-plus==1.25.0 ; python_version >= "3.10" and python_version < "4.0"
+# protobuf==5.28.3 ; python_version >= "3.10" and python_version < "4.0"
+# pyasn1-modules==0.4.1 ; python_version >= "3.10" and python_version < "4.0"
+# pyasn1==0.6.1 ; python_version >= "3.10" and python_version < "4.0"
+# pycparser==2.22 ; python_version >= "3.10" and python_version < "4.0" and platform_python_implementation != "PyPy"
+# pydantic-core==2.27.1 ; python_version >= "3.10" and python_version < "4.0"
+# pydantic==2.10.1 ; python_version >= "3.10" and python_version < "4.0"
+# pymupdf4llm==0.0.17 ; python_version >= "3.10" and python_version < "4.0"
+# pymupdf==1.24.14 ; python_version >= "3.10" and python_version < "4.0"
+# pyparsing==3.2.0 ; python_version >= "3.10" and python_version < "4.0"
+# pypdfium2==4.30.0 ; python_version >= "3.10" and python_version < "4.0"
+# python-dateutil==2.9.0.post0 ; python_version >= "3.10" and python_version < "4.0"
+# python-dotenv==1.0.1 ; python_version >= "3.10" and python_version < "4.0"
+# pytz==2024.2 ; python_version >= "3.10" and python_version < "4.0"
+# requests==2.32.3 ; python_version >= "3.10" and python_version < "4.0"
+# rsa==4.9 ; python_version >= "3.10" and python_version < "4"
+# six==1.16.0 ; python_version >= "3.10" and python_version < "4.0"
+# sniffio==1.3.1 ; python_version >= "3.10" and python_version < "4.0"
+# soupsieve==2.6 ; python_version >= "3.10" and python_version < "4.0"
+# tabulate==0.9.0 ; python_version >= "3.10" and python_version < "4.0"
+# tqdm==4.67.1 ; python_version >= "3.10" and python_version < "4.0"
+# typing-extensions==4.12.2 ; python_version >= "3.10" and python_version < "4.0"
+# tzdata==2024.2 ; python_version >= "3.10" and python_version < "4.0"
+# uritemplate==4.1.1 ; python_version >= "3.10" and python_version < "4.0"
+# urllib3==2.2.3 ; python_version >= "3.10" and python_version < "4.0"
+# win32-setctime==1.1.0 ; python_version >= "3.10" and python_version < "4.0" and sys_platform == "win32"
+# wrapt==1.17.0 ; python_version >= "3.10" and python_version < "4.0"
+# absl-py==2.1.0
+# alembic==1.14.0
+# annotated-types==0.7.0
+# anyio==4.6.2.post1
+# appnope==0.1.4
+# asttokens==2.4.1
+# astunparse==1.6.3
+# beautifulsoup4==4.12.3
+# # Brotli @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_27zk0eqdh0/croot/brotli-split_1714483157007/work
+# Brotli
+# bs4==0.0.2
+# build==1.2.2.post1
+# CacheControl==0.14.1
+# cachetools==5.5.0
+# catboost==1.2.7
+# certifi==2024.8.30
+# cffi==1.17.1
+# charset-normalizer==3.4.0
+# cleo==2.1.0
+# colorama==0.4.6
+# colorlog==6.9.0
+# comm==0.2.2
+# contourpy==1.3.1
+# crashtest==0.4.1
+# cryptography==43.0.3
+# cycler==0.12.1
+# debugpy==1.8.9
+# decorator==5.1.1
+# Deprecated==1.2.15
+# distlib==0.3.9
+# distro==1.9.0
+# dulwich==0.21.7
+# exceptiongroup==1.2.2
+# executing==2.1.0
+# fastjsonschema==2.21.1
+# # filelock @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_d3quwmvouf/croot/filelock_1700591194006/work
+# filelock
+# flatbuffers==24.3.25
+# fonttools==4.54.1
+# fsspec==2024.10.0
+# gast==0.6.0
+# # gmpy2 @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/croot-muov7gw1/gmpy2_1645462616268/work
+# gmpy2
+# google==3.0.0
+# google-ai-generativelanguage==0.6.10
+# google-api-core==2.23.0
+# google-api-python-client==2.154.0
+# google-auth==2.36.0
+# google-auth-httplib2==0.2.0
+# google-generativeai==0.8.3
+# google-pasta==0.2.0
+# googleapis-common-protos==1.66.0
+# graphviz==0.20.3
+# grpcio==1.68.0
+# grpcio-status==1.68.0
+# h11==0.14.0
+# h5py==3.12.1
+# httpcore==1.0.7
+# httplib2==0.22.0
+# httpx==0.27.2
+# idna==3.10
+# # importlib_metadata @ file:///home/conda/feedstock_root/build_artifacts/importlib-metadata_1726082825846/work
+# importlib_metadata
+# iniconfig==2.0.0
+# installer==0.7.0
+# ipykernel==6.29.5
+# ipython==8.29.0
+# jaraco.classes==3.4.0
+# jedi==0.19.2
+# # Jinja2 @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_b15nuwux5r/croot/jinja2_1730902833938/work
+# Jinja2
+# jiter==0.7.1
+# joblib==1.4.2
+# jupyter_client==8.6.3
+# jupyter_core==5.7.2
+# keras==3.6.0
+# keyring==24.3.1
+# kiwisolver==1.4.7
+
+# libclang==18.1.1
+# lightgbm==4.5.0
+# loguru==0.7.2
+# lxml==5.3.0
+# Mako==1.3.6
+# Markdown==3.7
+# markdown-it-py==3.0.0
+# markdownify==0.13.1
+# # MarkupSafe @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_a84ni4pci8/croot/markupsafe_1704206002077/work
+# MarkupSafe
+# matplotlib==3.9.2
+# matplotlib-inline==0.1.7
+# mdurl==0.1.2
+# ml-dtypes==0.4.1
+# more-itertools==10.5.0
+# # mpmath @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_17iu6a8a3m/croot/mpmath_1690848269369/work
+# mpmath
+# msgpack==1.1.0
+# namex==0.0.8
+# nest-asyncio==1.6.0
+# # networkx @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_797xfkx_y7/croot/networkx_1717597499877/work
+# networkx
+# numpy==2.1.3
+# openai==1.55.0
+# opencv-python==4.10.0.84
+# opt_einsum==3.4.0
+# optree==0.13.1
+# optuna==4.1.0
+# packaging==24.2
+# pandas==2.2.3
+# parso==0.8.4
+# pdfminer.six==20231228
+# pdfplumber==0.11.4
+# pexpect==4.9.0
+# # pickleshare @ file:///home/conda/feedstock_root/build_artifacts/pickleshare_1602536217715/work
+# pickleshare
+# pikepdf==9.4.2
+# pillow==11.0.0
+# pkginfo==1.12.0
+# platformdirs==4.3.6
+# plotly==5.24.1
+# pluggy==1.5.0
+# poetry==1.8.4
+# poetry-core==1.9.1
+# poetry-plugin-export==1.8.0
+# polars==1.13.0
+# prompt_toolkit==3.0.48
+# proto-plus==1.25.0
+# protobuf==5.28.3
+# psutil==6.1.0
+# ptyprocess==0.7.0
+# pure_eval==0.2.3
+# pyarrow==18.0.0
+# pyasn1==0.6.1
+# pyasn1_modules==0.4.1
+# pycparser==2.22
+# pydantic==2.10.1
+# pydantic_core==2.27.1
+# Pygments==2.18.0
+# PyMuPDF==1.24.14
+# pymupdf4llm==0.0.17
+# pyparsing==3.2.0
+# pypdfium2==4.30.0
+# pyproject_hooks==1.2.0
+# PyQt5==5.15.11
+# PyQt5-Qt5==5.15.15
+# PyQt5_sip==12.15.0
+# PyQtWebEngine==5.15.7
+# PyQtWebEngine-Qt5==5.15.15
+# # PySocks @ file:///Users/ktietz/ci_310/pysocks_1643961536721/work
+# PySocks
+# pytest==8.3.3
+# pytest-asyncio==0.23.8
+# python-dateutil==2.9.0.post0
+# python-dotenv==1.0.1
+# pytorch-tabnet==4.1.0
+# pytz==2024.2
+# # PyYAML @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_faoex52hrr/croot/pyyaml_1728657970485/work
+# PyYAML
+# pyzmq==26.2.0
+# RapidFuzz==3.10.1
+# requests==2.32.3
+# requests-toolbelt==1.0.0
+# rich==13.9.4
+# rsa==4.9
+# scikit-learn==1.5.2
+# scipy==1.14.1
+# seaborn==0.13.2
+# streamlit==1.5.0
+# shellingham==1.5.4
+# six==1.16.0
+# sniffio==1.3.1
+# soupsieve==2.6
+# SQLAlchemy==2.0.36
+# stack-data==0.6.3
+# sympy==1.13.1
+# tabulate==0.9.0
+# tenacity==9.0.0
+# tensorboard==2.18.0
+# tensorboard-data-server==0.7.2
+# tensorflow==2.18.0
+# tensorflow-io-gcs-filesystem==0.37.1
+# termcolor==2.5.0
+# threadpoolctl==3.5.0
+# tiktoken==0.8.0
+# tomli==2.1.0
+# tomlkit==0.13.2
+# torch==2.5.1
+# torchgeometry==0.1.2
+# torchvision==0.20.1
+# tornado==6.4.2
+# tqdm==4.67.1
+# traitlets==5.14.3
+# trove-classifiers==2024.10.21.16
+# typing_extensions==4.12.2
+# tzdata==2024.2
+# uritemplate==4.1.1
+# urllib3==2.2.3
+# verterxai==1.71.1 
+# virtualenv==20.28.0
+# wcwidth==0.2.13
+# Werkzeug==3.1.3
+# wrapt==1.17.0
+# xattr==1.1.0
+# xgboost==2.1.2
+# # zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1731262100163/work
+# zipp
+
+
+# Editable install with no version control (parser)
 # -e /Users/adityasingh/Documents/Work/Havard/Parser/parser
-
-
-annotated-types==0.7.0 ; python_version >= "3.10" and python_version < "4.0"
-anyio==4.6.2.post1 ; python_version >= "3.10" and python_version < "4.0"
-beautifulsoup4==4.12.3 ; python_version >= "3.10" and python_version < "4.0"
-bs4==0.0.2 ; python_version >= "3.10" and python_version < "4.0"
-cachetools==5.5.0 ; python_version >= "3.10" and python_version < "4.0"
-certifi==2024.8.30 ; python_version >= "3.10" and python_version < "4.0"
-cffi==1.17.1 ; python_version >= "3.10" and python_version < "4.0" and platform_python_implementation != "PyPy"
-charset-normalizer==3.4.0 ; python_version >= "3.10" and python_version < "4.0"
-colorama==0.4.6 ; python_version >= "3.10" and python_version < "4.0" and (sys_platform == "win32" or platform_system == "Windows")
-cryptography==43.0.3 ; python_version >= "3.10" and python_version < "4.0"
-deprecated==1.2.15 ; python_version >= "3.10" and python_version < "4.0"
-distro==1.9.0 ; python_version >= "3.10" and python_version < "4.0"
-exceptiongroup==1.2.2 ; python_version >= "3.10" and python_version < "3.11"
-google-ai-generativelanguage==0.6.10 ; python_version >= "3.10" and python_version < "4.0"
-google-api-core==2.23.0 ; python_version >= "3.10" and python_version < "4.0"
-google-api-core[grpc]==2.23.0 ; python_version >= "3.10" and python_version < "4.0"
-google-api-python-client==2.154.0 ; python_version >= "3.10" and python_version < "4.0"
-google-auth-httplib2==0.2.0 ; python_version >= "3.10" and python_version < "4.0"
-google-auth==2.36.0 ; python_version >= "3.10" and python_version < "4.0"
-google-generativeai==0.8.3 ; python_version >= "3.10" and python_version < "4.0"
-googleapis-common-protos==1.66.0 ; python_version >= "3.10" and python_version < "4.0"
-grpcio-status==1.68.0 ; python_version >= "3.10" and python_version < "4.0"
-grpcio==1.68.0 ; python_version >= "3.10" and python_version < "4.0"
-h11==0.14.0 ; python_version >= "3.10" and python_version < "4.0"
-httpcore==1.0.7 ; python_version >= "3.10" and python_version < "4.0"
-httplib2==0.22.0 ; python_version >= "3.10" and python_version < "4.0"
-httpx==0.27.2 ; python_version >= "3.10" and python_version < "4.0"
-idna==3.10 ; python_version >= "3.10" and python_version < "4.0"
-jiter==0.7.1 ; python_version >= "3.10" and python_version < "4.0"
-loguru==0.7.2 ; python_version >= "3.10" and python_version < "4.0"
-lxml==5.3.0 ; python_version >= "3.10" and python_version < "4.0"
-markdown==3.7 ; python_version >= "3.10" and python_version < "4.0"
-markdownify==0.13.1 ; python_version >= "3.10" and python_version < "4.0"
-numpy==2.1.3 ; python_version >= "3.10" and python_version < "4.0"
-openai==1.55.0 ; python_version >= "3.10" and python_version < "4.0"
-opencv-python==4.10.0.84 ; python_version >= "3.10" and python_version < "4.0"
-packaging==24.2 ; python_version >= "3.10" and python_version < "4.0"
-pandas==2.2.3 ; python_version >= "3.10" and python_version < "4.0"
-pdfminer-six==20231228 ; python_version >= "3.10" and python_version < "4.0"
-pdfplumber==0.11.4 ; python_version >= "3.10" and python_version < "4.0"
-pikepdf==9.4.2 ; python_version >= "3.10" and python_version < "4.0"
-pillow==11.0.0 ; python_version >= "3.10" and python_version < "4.0"
-proto-plus==1.25.0 ; python_version >= "3.10" and python_version < "4.0"
-protobuf==5.28.3 ; python_version >= "3.10" and python_version < "4.0"
-pyasn1-modules==0.4.1 ; python_version >= "3.10" and python_version < "4.0"
-pyasn1==0.6.1 ; python_version >= "3.10" and python_version < "4.0"
-pycparser==2.22 ; python_version >= "3.10" and python_version < "4.0" and platform_python_implementation != "PyPy"
-pydantic-core==2.27.1 ; python_version >= "3.10" and python_version < "4.0"
-pydantic==2.10.1 ; python_version >= "3.10" and python_version < "4.0"
-pymupdf4llm==0.0.17 ; python_version >= "3.10" and python_version < "4.0"
-pymupdf==1.24.14 ; python_version >= "3.10" and python_version < "4.0"
-pyparsing==3.2.0 ; python_version >= "3.10" and python_version < "4.0"
-pypdfium2==4.30.0 ; python_version >= "3.10" and python_version < "4.0"
-python-dateutil==2.9.0.post0 ; python_version >= "3.10" and python_version < "4.0"
-python-dotenv==1.0.1 ; python_version >= "3.10" and python_version < "4.0"
-pytz==2024.2 ; python_version >= "3.10" and python_version < "4.0"
-requests==2.32.3 ; python_version >= "3.10" and python_version < "4.0"
-rsa==4.9 ; python_version >= "3.10" and python_version < "4"
-six==1.16.0 ; python_version >= "3.10" and python_version < "4.0"
-sniffio==1.3.1 ; python_version >= "3.10" and python_version < "4.0"
-soupsieve==2.6 ; python_version >= "3.10" and python_version < "4.0"
-tabulate==0.9.0 ; python_version >= "3.10" and python_version < "4.0"
-tqdm==4.67.1 ; python_version >= "3.10" and python_version < "4.0"
-typing-extensions==4.12.2 ; python_version >= "3.10" and python_version < "4.0"
-tzdata==2024.2 ; python_version >= "3.10" and python_version < "4.0"
-uritemplate==4.1.1 ; python_version >= "3.10" and python_version < "4.0"
-urllib3==2.2.3 ; python_version >= "3.10" and python_version < "4.0"
-win32-setctime==1.1.0 ; python_version >= "3.10" and python_version < "4.0" and sys_platform == "win32"
-wrapt==1.17.0 ; python_version >= "3.10" and python_version < "4.0"
-absl-py==2.1.0
-alembic==1.14.0
-annotated-types==0.7.0
-anyio==4.6.2.post1
-appnope==0.1.4
-asttokens==2.4.1
-astunparse==1.6.3
-beautifulsoup4==4.12.3
-# Brotli @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_27zk0eqdh0/croot/brotli-split_1714483157007/work
-Brotli
-bs4==0.0.2
-build==1.2.2.post1
-CacheControl==0.14.1
-cachetools==5.5.0
-catboost==1.2.7
-certifi==2024.8.30
-cffi==1.17.1
-charset-normalizer==3.4.0
-cleo==2.1.0
-colorama==0.4.6
-colorlog==6.9.0
-comm==0.2.2
-contourpy==1.3.1
-crashtest==0.4.1
-cryptography==43.0.3
-cycler==0.12.1
-debugpy==1.8.9
-decorator==5.1.1
-Deprecated==1.2.15
-distlib==0.3.9
-distro==1.9.0
-dulwich==0.21.7
-exceptiongroup==1.2.2
-executing==2.1.0
-fastjsonschema==2.21.1
-# filelock @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_d3quwmvouf/croot/filelock_1700591194006/work
-filelock
-flatbuffers==24.3.25
-fonttools==4.54.1
-fsspec==2024.10.0
-gast==0.6.0
-# gmpy2 @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/croot-muov7gw1/gmpy2_1645462616268/work
-gmpy2
-google==3.0.0
-google-ai-generativelanguage==0.6.10
-google-api-core==2.23.0
-google-api-python-client==2.154.0
-google-auth==2.36.0
-google-auth-httplib2==0.2.0
-google-generativeai==0.8.3
-google-pasta==0.2.0
-googleapis-common-protos==1.66.0
-graphviz==0.20.3
-grpcio==1.68.0
-grpcio-status==1.68.0
-h11==0.14.0
-h5py==3.12.1
-httpcore==1.0.7
-httplib2==0.22.0
-httpx==0.27.2
-idna==3.10
-# importlib_metadata @ file:///home/conda/feedstock_root/build_artifacts/importlib-metadata_1726082825846/work
-importlib_metadata
-iniconfig==2.0.0
-installer==0.7.0
-ipykernel==6.29.5
-ipython==8.29.0
-jaraco.classes==3.4.0
-jedi==0.19.2
-# Jinja2 @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_b15nuwux5r/croot/jinja2_1730902833938/work
-Jinja2
-jiter==0.7.1
-joblib==1.4.2
-jupyter_client==8.6.3
-jupyter_core==5.7.2
-keras==3.6.0
-keyring==24.3.1
-kiwisolver==1.4.7
-
-libclang==18.1.1
-lightgbm==4.5.0
-loguru==0.7.2
-lxml==5.3.0
-Mako==1.3.6
-Markdown==3.7
-markdown-it-py==3.0.0
-markdownify==0.13.1
-# MarkupSafe @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_a84ni4pci8/croot/markupsafe_1704206002077/work
-MarkupSafe
-matplotlib==3.9.2
-matplotlib-inline==0.1.7
-mdurl==0.1.2
-ml-dtypes==0.4.1
-more-itertools==10.5.0
-# mpmath @ file:///private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_17iu6a8a3m/croot/mpmath_1690848269369/work
-mpmath
-msgpack==1.1.0
-namex==0.0.8
-nest-asyncio==1.6.0
-# networkx @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_797xfkx_y7/croot/networkx_1717597499877/work
-networkx
-numpy==2.1.3
-openai==1.55.0
-opencv-python==4.10.0.84
-opt_einsum==3.4.0
-optree==0.13.1
-optuna==4.1.0
-packaging==24.2
-pandas==2.2.3
-parso==0.8.4
-pdfminer.six==20231228
-pdfplumber==0.11.4
-pexpect==4.9.0
-# pickleshare @ file:///home/conda/feedstock_root/build_artifacts/pickleshare_1602536217715/work
-pickleshare
-pikepdf==9.4.2
-pillow==11.0.0
-pkginfo==1.12.0
-platformdirs==4.3.6
-plotly==5.24.1
-pluggy==1.5.0
-poetry==1.8.4
-poetry-core==1.9.1
-poetry-plugin-export==1.8.0
-polars==1.13.0
-prompt_toolkit==3.0.48
-proto-plus==1.25.0
-protobuf==5.28.3
-psutil==6.1.0
-ptyprocess==0.7.0
-pure_eval==0.2.3
-pyarrow==18.0.0
-pyasn1==0.6.1
-pyasn1_modules==0.4.1
-pycparser==2.22
-pydantic==2.10.1
-pydantic_core==2.27.1
-Pygments==2.18.0
-PyMuPDF==1.24.14
-pymupdf4llm==0.0.17
-pyparsing==3.2.0
-pypdfium2==4.30.0
-pyproject_hooks==1.2.0
-PyQt5==5.15.11
-PyQt5-Qt5==5.15.15
-PyQt5_sip==12.15.0
-PyQtWebEngine==5.15.7
-PyQtWebEngine-Qt5==5.15.15
-# PySocks @ file:///Users/ktietz/ci_310/pysocks_1643961536721/work
-PySocks
-pytest==8.3.3
-pytest-asyncio==0.23.8
-python-dateutil==2.9.0.post0
-python-dotenv==1.0.1
-pytorch-tabnet==4.1.0
-pytz==2024.2
-# PyYAML @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_faoex52hrr/croot/pyyaml_1728657970485/work
-PyYAML
-pyzmq==26.2.0
-RapidFuzz==3.10.1
-requests==2.32.3
-requests-toolbelt==1.0.0
-rich==13.9.4
-rsa==4.9
-scikit-learn==1.5.2
-scipy==1.14.1
-seaborn==0.13.2
-streamlit==1.5.0
-shellingham==1.5.4
-six==1.16.0
-sniffio==1.3.1
-soupsieve==2.6
-SQLAlchemy==2.0.36
-stack-data==0.6.3
-sympy==1.13.1
-tabulate==0.9.0
-tenacity==9.0.0
-tensorboard==2.18.0
-tensorboard-data-server==0.7.2
-tensorflow==2.18.0
-tensorflow-io-gcs-filesystem==0.37.1
-termcolor==2.5.0
-threadpoolctl==3.5.0
-tiktoken==0.8.0
-tomli==2.1.0
-tomlkit==0.13.2
-torch==2.5.1
-torchgeometry==0.1.2
-torchvision==0.20.1
-tornado==6.4.2
-tqdm==4.67.1
-traitlets==5.14.3
-trove-classifiers==2024.10.21.16
-typing_extensions==4.12.2
-tzdata==2024.2
-uritemplate==4.1.1
-urllib3==2.2.3
-verterxai==1.71.1 
-virtualenv==20.28.0
-wcwidth==0.2.13
-Werkzeug==3.1.3
-wrapt==1.17.0
-xattr==1.1.0
-xgboost==2.1.2
-# zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1731262100163/work
-zipp
+annotated-types
+anyio
+beautifulsoup4
+bs4
+cachetools
+certifi
+cffi
+charset-normalizer
+colorama
+cryptography
+deprecated
+distro
+exceptiongroup
+google-ai-generativelanguage
+google-api-core
+# google-api-core[grpc]
+google-api-core
+google-api-python-client
+google-auth-httplib2
+google-auth
+google-generativeai
+googleapis-common-protos
+grpcio-status
+grpcio
+h11
+httpcore
+httplib2
+httpx
+idna
+jiter
+loguru
+lxml
+markdown
+markdownify
+numpy
+openai
+opencv-python
+packaging
+pandas
+pdfminer-six
+pdfplumber
+pikepdf
+pillow
+proto-plus
+protobuf
+pyasn1-modules
+pyasn1
+pycparser
+pydantic-core
+pydantic
+pymupdf4llm
+pymupdf
+pyparsing
+pypdfium2
+python-dateutil
+python-dotenv
+pytz
+requests
+rsa
+six
+sniffio
+soupsieve
+tabulate
+tqdm
+typing-extensions
+tzdata
+uritemplate 
+urllib3 
+win32-setctime 
+wrapt 
+absl-py 
+alembic 
+appnope 
+asttokens 
+astunparse 
+Brotli 
+build 
+CacheControl 
+catboost 
+cleo 
+colorlog 
+comm 
+contourpy 
+crashtest 
+cycler 
+debugpy 
+decorator 
+distlib 
+dulwich 
+executing 
+fastjsonschema 
+filelock 
+flatbuffers 
+fonttools 
+fsspec 
+gast 
+gmpy2 
+google 
+google-pasta 
+graphviz 
+h5py 
+importlib_metadata 
+iniconfig 
+installer 
+ipykernel 
+ipython 
+jaraco.classes 
+Jinja2  
+joblib  
+jupyter_client  
+jupyter_core  
+keras  
+keyring  
+kiwisolver  
+libclang  
+lightgbm  
+Mako  
+markdown-it-py  
+mdurl  
+ml-dtypes  
+more-itertools  
+mpmath  
+msgpack  
+namex  
+nest-asyncio  
+networkx  
+opt_einsum  
+optree  
+optuna  
+parso  
+pexpect  
+pickleshare  
+pkginfo  
+platformdirs  
+plotly  
+pluggy  
+poetry  
+poetry-core  
+poetry-plugin-export  
+polars  
+prompt_toolkit  
+pyarrow   
+Pygments   
+PyQt5   
+PyQt5-Qt5   
+PyQt5_sip   
+PyQtWebEngine   
+PyQtWebEngine-Qt5   
+PySocks   
+pytest   
+pytest-asyncio   
+pytorch-tabnet   
+PyYAML   
+pyzmq   
+RapidFuzz   
+requests-toolbelt   
+rich   
+scikit-learn   
+scipy   
+seaborn   
+streamlit   
+shellingham   
+SQLAlchemy   
+stack-data   
+sympy   
+tensorboard   
+tensorboard-data-server   
+tensorflow    
+tensorflow-io-gcs-filesystem    
+termcolor    
+threadpoolctl    
+tiktoken    
+tomli    
+tomlkit    
+torch    
+torchgeometry    
+torchvision    
+tornado    
+traitlets    
+trove-classifiers    
+verterxai     
+virtualenv     
+wcwidth     
+Werkzeug     
+xattr     
+xgboost     
+zipp     
