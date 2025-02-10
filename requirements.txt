@@ -461,7 +461,7 @@ torchvision
 tornado    
 traitlets    
 trove-classifiers    
-verterxai     
+vertexai     
 virtualenv     
 wcwidth     
 Werkzeug     
